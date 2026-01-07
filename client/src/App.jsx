@@ -1,10 +1,15 @@
-import "./App.css";
+import MainLayout from "./layouts/MainLayout";
+import Home from "./pages/Home";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <>
-      <div className="text-4xl text-blue-700 font-semibold">Hello</div>
-    </>
+    <Routes>
+      {/* Public Home using Home layout */}
+      <Route element={<MainLayout />}>
+        <Route path="/" element={<Home />} />
+      </Route>
+    </Routes>
   );
 }
 
