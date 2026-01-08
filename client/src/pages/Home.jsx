@@ -1,7 +1,9 @@
+import HeroContent from "../components/home/HeroContent";
+
 function Home() {
   return (
-    <div>
-      <p className="text-center">This is the Home page</p>
+    <div className="relative">
+      <HeroContent />
     </div>
   );
 }

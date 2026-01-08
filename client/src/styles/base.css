@@ -114,17 +114,19 @@
     --font-clr-1: #ffffff;
     --font-clr-2: #b6b6b6;
     --font-clr-3: #9b9b9b;
+    --font-clr-4: #4f9c46;
+    --font-clr-5: #9b9b9b;
 
     /* ----------- theme colors ------------ */
     /* ----------- theme colors ------------ */
     --theme-clr-1: #e9e9e9;
     --theme-clr-2: #111827;
     --theme-clr-3: #202938;
-    --theme-clr-4: #0d9488;
+    --theme-clr-4: #4f9c46;
 
     /* ----------- button colors ------------ */
     /* ----------- button colors ------------ */
-    --button-clr-1: #A259FF;
+    --button-clr-1: #75B06F;
 
     /* ----------- icon colors ------------ */
     /* ----------- icon colors ------------ */
@@ -205,4 +207,34 @@
 @layer utilities {}
 
 /* === TAILWIND UTILITY COMPONENTS === */
-@layer components {}
+@layer components {
+
+    /* === BUTTONS === */
+    .btn {
+        @apply border border-gray-300 px-2 py-1.5 rounded-md shadow-md;
+    }
+
+    /* Variants */
+    .btn--primary {
+        @apply border border-gray-300 px-2 py-1.5 rounded-md shadow-md;
+    }
+
+    .btn--secondary {
+        @apply border border-gray-300 px-2 py-1.5 rounded-md shadow-md bg-emerald-600
+    }
+
+    /* Sizes */
+    .btn--sm {
+        @apply px-2 py-1.5 text-sm;
+    }
+
+    .btn--md {
+        @apply px-2 py-1.5 text-md;
+    }
+
+    .btn--lg {
+        @apply px-2 py-1.5 text-lg;
+    }
+
+    /* === HEADER === */
+}
