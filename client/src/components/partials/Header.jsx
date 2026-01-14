@@ -3,7 +3,7 @@ import CTAButton from "../buttons/CtaButton";
 
 function Header() {
   return (
-    <header className="sticky top-0 w-full">
+    <header className="sticky top-0 w-full z-10">
       <div className="header-items max-w-[1400px] mx-auto px-4 py-4 flex justify-between">
         {/* logo */}
         <a href="/" className="flex items-center gap-1 w-fit">
@@ -15,10 +15,10 @@ function Header() {
 
         {/* Desktop Nav */}
         <nav className="nav-links flex items-center gap-2">
-          <CTAButton to="/login" variant="primary" size="sm">
-            Bussiness Login
+          <CTAButton to="/login" variant="primary" size="md">
+            Business Login
           </CTAButton>
-          <CTAButton to="/signup" variant="secondary" size="sm">
+          <CTAButton to="/signup" variant="secondary" size="md">
             Create Account
           </CTAButton>
         </nav>

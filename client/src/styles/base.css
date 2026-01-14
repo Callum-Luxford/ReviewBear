@@ -114,19 +114,19 @@
     --font-clr-1: #ffffff;
     --font-clr-2: #b6b6b6;
     --font-clr-3: #9b9b9b;
-    --font-clr-4: #4f9c46;
+    --font-clr-4: #5F8D4E;
     --font-clr-5: #9b9b9b;
 
     /* ----------- theme colors ------------ */
     /* ----------- theme colors ------------ */
-    --theme-clr-1: #e9e9e9;
-    --theme-clr-2: #111827;
+    --theme-clr-1: #F9F7F7;
+    --theme-clr-2: #ffffff;
     --theme-clr-3: #202938;
-    --theme-clr-4: #4f9c46;
+    --theme-clr-4: #5F8D4E;
 
     /* ----------- button colors ------------ */
     /* ----------- button colors ------------ */
-    --button-clr-1: #75B06F;
+    --button-clr-1: #5F8D4E;
 
     /* ----------- icon colors ------------ */
     /* ----------- icon colors ------------ */
@@ -160,6 +160,7 @@
         font-family: var(--font-family-base);
         transition: padding-right 0.2s ease;
     }
+
 
     input[type="text"],
     input[type="email"],
@@ -199,7 +200,7 @@
 
     input[type="option"],
     select {
-        @apply border-none rounded-none w-fit
+        @apply border-none rounded-none w-fit;
     }
 }
 
@@ -209,32 +210,11 @@
 /* === TAILWIND UTILITY COMPONENTS === */
 @layer components {
 
+    .section {
+        @apply w-full py-12;
+    }
+
     /* === BUTTONS === */
-    .btn {
-        @apply border border-gray-300 px-2 py-1.5 rounded-md shadow-md;
-    }
-
-    /* Variants */
-    .btn--primary {
-        @apply border border-gray-300 px-2 py-1.5 rounded-md shadow-md;
-    }
-
-    .btn--secondary {
-        @apply border border-gray-300 px-2 py-1.5 rounded-md shadow-md bg-emerald-600
-    }
-
-    /* Sizes */
-    .btn--sm {
-        @apply px-2 py-1.5 text-sm;
-    }
-
-    .btn--md {
-        @apply px-2 py-1.5 text-md;
-    }
-
-    .btn--lg {
-        @apply px-2 py-1.5 text-lg;
-    }
 
     /* === HEADER === */
 }
