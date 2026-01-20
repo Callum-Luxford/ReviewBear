@@ -1,4 +1,4 @@
 function Footer() {
-  return <div>This is a Footer</div>;
+  return <div className="bg-white">This is a Footer</div>;
 }
 export default Footer;

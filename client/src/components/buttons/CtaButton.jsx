@@ -1,11 +1,23 @@
 import { Link } from "react-router-dom";
 
-const base = "border px-2 py-1.5 rounded-md";
+const base =
+  "relative inline-flex items-center justify-center gap-2 px-2 py-1.5 rounded-md font-medium transition-all duration-300 ease-out focus:outline-none";
 
 const variants = {
-  primary: "bg-theme_clr_2 text-black",
-  secondary: "bg-theme_clr_4 text-white border-theme_clr_4",
+  primary: `
+    bg-[rgba(8,12,32,0.7)]
+    text-white
+    border border-white/50
+    `,
+
+  secondary: `
+    gradient-border
+    text-white
+    bg-[rgba(8,12,32,0.6)]
+    backdrop-blur-md 
+    `,
 };
+
 // border border-gray-300 px-2 py-1.5 rounded-md shadow-md
 const sizes = {
   sm: "text-sm",

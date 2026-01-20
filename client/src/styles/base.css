@@ -119,7 +119,7 @@
 
     /* ----------- theme colors ------------ */
     /* ----------- theme colors ------------ */
-    --theme-clr-1: #F9F7F7;
+    --theme-clr-1: #000236;
     --theme-clr-2: #ffffff;
     --theme-clr-3: #202938;
     --theme-clr-4: #5F8D4E;
@@ -138,6 +138,9 @@
     --gradient-clr-1: #ec4899;
     --gradient-clr-2: #3b82f6;
     --focus-clr-1: #0d9488;
+
+
+    --header-offset: 3rem;
 }
 
 @layer base {
@@ -210,11 +213,254 @@
 /* === TAILWIND UTILITY COMPONENTS === */
 @layer components {
 
+    /* === Thin gradient border === */
+    .gradient-border {
+        background: linear-gradient(#0b1022, #0b1022) padding-box,
+            linear-gradient(135deg, rgba(59, 160, 175, 0.9), rgba(82, 37, 165, 0.9)) border-box;
+        border: 1px solid transparent;
+        border-radius: 12px;
+    }
+
+    @keyframes ctaGlow {
+
+        0%,
+        100% {
+            box-shadow: 0 8px 30px rgba(111, 174, 106, 0.35);
+        }
+
+        50% {
+            box-shadow: 0 12px 45px rgba(111, 174, 106, 0.6);
+        }
+    }
+
     .section {
         @apply w-full py-12;
     }
 
-    /* === BUTTONS === */
+    /* === PAGE BACKGROUND === */
+    .page-bg {
+        background: radial-gradient(900px 650px at 78% 12%,
+                rgba(82, 37, 165, 0.45),
+                transparent 60%),
+            radial-gradient(700px 520px at 64% 22%,
+                rgba(123, 92, 255, 0.18),
+                transparent 65%),
+            radial-gradient(800px 600px at 74% 34%,
+                rgba(59, 160, 175, 0.16),
+                transparent 62%),
+            radial-gradient(1400px 1100px at 6% 78%,
+                rgba(21, 56, 66, 0.92),
+                transparent 55%),
+            radial-gradient(900px 800px at 0% 80%,
+                rgba(59, 160, 175, 0.18),
+                transparent 58%),
+            linear-gradient(180deg, #060c1f 0%, #06081d 60%, #06081d 100%);
+        min-height: 100vh;
+        position: relative;
+        overflow: hidden;
+    }
 
-    /* === HEADER === */
+    /* === SECTION WRAPPER === */
+    .bg-section {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .bg-section> :not(.bg-decor) {
+        position: relative;
+        z-index: 2;
+    }
+
+    /* === DECOR LAYER === */
+    .bg-decor {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 1;
+
+        /* keep your header spacing control */
+        top: var(--header-offset, 6rem);
+
+        /* diamond size control */
+        --bg-diamond-size: 380px;
+
+        /* NEW: container controls for the small accents */
+        --bg-inset-x: 50px;
+        --bg-inset-top: 88px;
+        --bg-frame-max: 2000px;
+    }
+
+    /* NEW: frame that all SMALL accents live inside */
+    .bg-frame {
+        position: absolute;
+        top: var(--bg-inset-top);
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100% - (var(--bg-inset-x) * 2));
+        max-width: var(--bg-frame-max);
+        height: calc(100% - var(--bg-inset-top));
+    }
+
+    /* === DIAMOND (ONE PER SECTION) === */
+    .bg-shape {
+        position: absolute;
+        width: var(--bg-diamond-size);
+        height: var(--bg-diamond-size);
+        top: 58%;
+        transform: translateX(-40%);
+        opacity: 0.55;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        filter: drop-shadow(0 0 16px rgba(59, 160, 175, 0.18)) drop-shadow(0 0 30px rgba(82, 37, 165, 0.1));
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50,3 93,25 93,75 50,97 7,75 7,25' fill='none' stroke='rgba(59,160,175,0.42)' stroke-width='0.25' stroke-linejoin='round'/%3E%3C/svg%3E");
+    }
+
+    .bg-decor--left .bg-shape {
+        left: -240px;
+    }
+
+    .bg-decor--right .bg-shape {
+        right: -240px;
+    }
+
+    /* === VERTICAL TICKS === */
+    .bg-ticks--left,
+    .bg-ticks--right {
+        position: absolute;
+        top: 0;
+        /* relative to .bg-frame */
+        display: flex;
+        gap: 12px;
+        opacity: 0.7;
+    }
+
+    .bg-ticks--left {
+        left: 0;
+    }
+
+    .bg-ticks--right {
+        right: 0;
+    }
+
+    .bg-tick {
+        width: 1px;
+        height: 16px;
+        border-radius: 999px;
+        background: rgba(59, 160, 175, 0.55);
+        box-shadow: 0 0 10px rgba(59, 160, 175, 0.25);
+    }
+
+    /* === HORIZONTAL LINES === */
+    .bg-hlines {
+        position: absolute;
+        display: grid;
+        gap: 6px;
+        opacity: 0.75;
+    }
+
+    .bg-hlines--top-right {
+        top: 0;
+        right: 0;
+    }
+
+    .bg-hlines--bottom-left {
+        bottom: 88px;
+        left: 0;
+    }
+
+    .bg-hline {
+        height: 2px;
+        border-radius: 999px;
+    }
+
+    .bg-hline--cyan {
+        width: 320px;
+        background: rgba(59, 160, 175, 0.75);
+        box-shadow: 0 0 14px rgba(59, 160, 175, 0.18);
+    }
+
+    .bg-hline--purple {
+        width: 240px;
+        background: rgba(123, 92, 255, 0.65);
+        box-shadow: 0 0 14px rgba(123, 92, 255, 0.14);
+    }
+
+    /* === SLANTED STREAKS === */
+    .bg-lines--right {
+        position: absolute;
+        top: 34%;
+        right: 0;
+        /* relative to .bg-frame */
+        display: grid;
+        gap: 10px;
+        transform: rotate(-18deg);
+        opacity: 0.55;
+    }
+
+    .bg-line {
+        width: 240px;
+        height: 2px;
+        border-radius: 999px;
+        background: linear-gradient(90deg,
+                rgba(123, 92, 255, 0),
+                rgba(123, 92, 255, 0.55),
+                rgba(59, 160, 175, 0.35),
+                rgba(123, 92, 255, 0));
+        filter: drop-shadow(0 0 12px rgba(123, 92, 255, 0.12));
+    }
+
+    .bg-line--thin {
+        width: 160px;
+        height: 1px;
+        opacity: 0.75;
+    }
+
+    /* === SECTION ALTERNATION === */
+    .bg-decor--left .bg-ticks--left,
+    .bg-decor--left .bg-hlines--bottom-left {
+        opacity: 0.85;
+    }
+
+    .bg-decor--left .bg-hlines--top-right,
+    .bg-decor--left .bg-lines--right {
+        opacity: 0.3;
+    }
+
+    .bg-decor--right .bg-hlines--top-right,
+    .bg-decor--right .bg-lines--right {
+        opacity: 0.85;
+    }
+
+    .bg-decor--right .bg-ticks--left,
+    .bg-decor--right .bg-hlines--bottom-left {
+        opacity: 0.3;
+    }
+
+    /* === MOBILE (SUBTLE, NOT REMOVED) === */
+    @media (max-width: 640px) {
+
+        .bg-hlines,
+        .bg-lines--right,
+        .bg-ticks--left,
+        .bg-ticks--right {
+            opacity: 0.35;
+            transform: scale(0.85);
+            transform-origin: top;
+        }
+
+        .bg-decor {
+            --bg-diamond-size: 300px;
+            --bg-inset-x: 16px;
+            --bg-inset-top: 88px;
+            --bg-frame-max: 1400px;
+        }
+
+        .bg-decor--left .bg-shape {
+            left: -200px;
+        }
+
+        .bg-decor--right .bg-shape {
+            right: -200px;
+        }
+    }
 }
