@@ -1,5 +1,5 @@
-import HeroContent from "../components/home/HeroContent";
-import BackgroundDiamonds from "../components/BackgroundDiamonds";
+import HeroContent from "../components/home/content/HeroContent";
+import BackgroundDiamonds from "../components/background/BackgroundDiamonds";
 
 function Home() {
   return (

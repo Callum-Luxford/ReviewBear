@@ -141,6 +141,9 @@
 
 
     --header-offset: 3rem;
+    --brand-gradient: linear-gradient(135deg,
+            rgb(0, 221, 255),
+            rgb(89, 0, 255));
 }
 
 @layer base {
@@ -213,6 +216,22 @@
 /* === TAILWIND UTILITY COMPONENTS === */
 @layer components {
 
+    .section {
+        @apply w-full py-12;
+    }
+
+    .gradient-text-hover {
+        @apply transition duration-200;
+    }
+
+    .gradient-text-hover:hover {
+        background: var(--brand-gradient);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+
     /* === Thin gradient border === */
     .gradient-border {
         background: linear-gradient(#0b1022, #0b1022) padding-box,
@@ -231,10 +250,6 @@
         50% {
             box-shadow: 0 12px 45px rgba(111, 174, 106, 0.6);
         }
-    }
-
-    .section {
-        @apply w-full py-12;
     }
 
     /* === PAGE BACKGROUND === */
@@ -259,6 +274,8 @@
         position: relative;
         overflow: hidden;
     }
+
+
 
     /* === SECTION WRAPPER === */
     .bg-section {
@@ -462,5 +479,12 @@
         .bg-decor--right .bg-shape {
             right: -200px;
         }
+    }
+
+
+
+    /* === Mobile Nav */
+    .mobile-nav-links>* {
+        @apply border-b pb-2
     }
 }

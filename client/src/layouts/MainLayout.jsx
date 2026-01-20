@@ -9,7 +9,7 @@ function MainLayout() {
       <Header />
 
       {/* Main constrained content */}
-      <main className="flex-grow max-w-[1400px] mx-auto w-full px-4">
+      <main className="flex-grow max-w-[1400px] mx-auto w-full px-4 pt-24">
         <Outlet />
       </main>
 
