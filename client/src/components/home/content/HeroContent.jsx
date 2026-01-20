@@ -1,12 +1,12 @@
-// import heroImage from "../../../assets/images/hero-image-2.png"
 import CTAButton from "../../buttons/CtaButton.jsx";
+import heroImage from "../../../assets/images/review-flow.png";
 
 function HeroContent() {
   return (
     <section className="hero-section section relative z-10">
-      <div className="hero-content grid grid-cols-2 gap-6">
-        <div className="grid-left flex flex-col gap-4">
-          <h1 className="text-7xl font-bold mt-20 text-text_clr_1">
+      <div className="hero-content grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid-left min-w-0 flex flex-col gap-4">
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold mt-20 text-text_clr_1">
             Boost Your Business with More Reviews
           </h1>
           <p className="text-2xl font-semibold text-text_clr_1">
@@ -22,8 +22,8 @@ function HeroContent() {
             </CTAButton>
           </div>
         </div>
-        <div className="grid-right">
-          {/* <img src={heroImage1} alt="reviewbear flow" className="" /> */}
+        <div className="grid-right flex justify-center">
+          {/* <img src={heroImage} alt="reviewbear flow" className="" /> */}
         </div>
       </div>
     </section>

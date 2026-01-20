@@ -15,16 +15,13 @@ import {
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const MENU_MS = 300;
-  const [overlayVisible, setOverlayVisible] = useState(false);
-  const [blurReady, setBlurReady] = useState(false);
 
   function closeMenu() {
     setMenuOpen(false);
   }
 
   return (
-    <header className="fixed top-0 left-0 z-50 w-full h-24">
+    <header className="fixed top-0 left-0 z-[9998] w-full h-24">
       {/* Mobile Nav */}
       <nav
         className={`mobile-nav text-text_clr_1 fixed top-0 right-0 w-2/3 h-full z-40 transform transition-transform duration-300 ease-in-out bg-slate-800  ${menuOpen ? "pointer-events-auto translate-x-0" : "pointer-events-none translate-x-full"}`}
@@ -51,12 +48,13 @@ function Header() {
         </div>
       </nav>
 
+      {/* Overlay */}
       <div
-        className={`fixed inset-0 z-30 bg-black/50 bg-gradient-to-l from-black/60 via-black/40 to-transparent ${menuOpen ? "visible" : "hidden"}`}
+        className={`fixed inset-0 z-30 bg-black/50 bg-gradient-to-l from-black/60 via-black/40 to-transparent ${menuOpen ? "block" : "hidden"}`}
         onClick={closeMenu}
       ></div>
 
-      <div className="header-items max-w-[1400px] mx-auto px-4 h-full flex items-center justify-between">
+      <div className="header-items relative max-w-[1400px] mx-auto px-4 h-full flex items-center justify-between">
         {/* logo */}
         <a href="/" className="flex items-center gap-1 w-fit">
           <img src={logo} alt="reviewbear-logo" className="h-10 w-auto" />
@@ -65,9 +63,7 @@ function Header() {
           </p>
         </a>
 
-        <div
-          className={`md:hidden z-50 ${menuOpen ? "" : ""}`}
-        >
+        <div className="md:hidden absolute top-6 right-4 z-[9999]">
           <Squash
             toggled={menuOpen}
             toggle={setMenuOpen}

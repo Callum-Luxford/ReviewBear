@@ -144,6 +144,18 @@
     --brand-gradient: linear-gradient(135deg,
             rgb(0, 221, 255),
             rgb(89, 0, 255));
+
+    --rb-scroll: 0px;
+
+    /* glow sizes scale with viewport */
+    --glow-tr-w: clamp(520px, 70vw, 1200px);
+    --glow-tr-h: clamp(420px, 55vw, 900px);
+
+    --glow-bl-w: clamp(700px, 95vw, 1500px);
+    --glow-bl-h: clamp(540px, 75vw, 1100px);
+
+    --glow-mid-w: clamp(700px, 80vw, 1800px);
+    --glow-mid-h: clamp(520px, 65vw, 1400px);
 }
 
 @layer base {
@@ -165,6 +177,7 @@
         font-family: 'Montserrat', sans-serif;
         font-family: var(--font-family-base);
         transition: padding-right 0.2s ease;
+
     }
 
 
@@ -219,6 +232,11 @@
     .section {
         @apply w-full py-12;
     }
+
+    /* .app-shell {
+        position: relative;
+        z-index: 1;
+    } */
 
     .gradient-text-hover {
         @apply transition duration-200;
@@ -275,6 +293,74 @@
         overflow: hidden;
     }
 
+    /* =========================================================
+      continuous site background (single seamless layer)
+       - Fixed behind everything
+       - Radial glow positions drift with scroll
+    ========================================================= */
+    .site-bg {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+
+        background-color: var(--theme-clr-1);
+
+        background-image:
+            radial-gradient(var(--glow-tr-w) var(--glow-tr-h) at calc(92% + (var(--rb-scroll) * 0.015)) calc(6% + (var(--rb-scroll) * 0.03)),
+                rgba(96, 70, 255, 0.24),
+                transparent 78%),
+
+            radial-gradient(var(--glow-bl-w) var(--glow-bl-h) at calc(6% - (var(--rb-scroll) * 0.01)) calc(94% - (var(--rb-scroll) * 0.02)),
+                rgba(20, 180, 200, 0.20),
+                transparent 80%),
+
+            radial-gradient(var(--glow-mid-w) var(--glow-mid-h) at 50% 55%,
+                rgba(70, 110, 255, 0.06),
+                transparent 85%),
+
+            /* keep your other glows as-is, or convert them too */
+            linear-gradient(180deg, #060c1f 0%, #06081d 60%, #06081d 100%);
+    }
+
+    /* Subtle breathing (brightness only) */
+    .site-bg::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+
+        /* same background stack, slightly stronger for the breath */
+        background-image:
+            radial-gradient(var(--glow-tr-w) var(--glow-tr-h) at calc(92% + (var(--rb-scroll) * 0.015)) calc(6% + (var(--rb-scroll) * 0.03)),
+                rgba(96, 70, 255, 0.30),
+                transparent 80%),
+            radial-gradient(var(--glow-bl-w) var(--glow-bl-h) at calc(6% - (var(--rb-scroll) * 0.01)) calc(94% - (var(--rb-scroll) * 0.02)),
+                rgba(20, 180, 200, 0.24),
+                transparent 82%),
+            radial-gradient(var(--glow-mid-w) var(--glow-mid-h) at 50% 55%,
+                rgba(70, 110, 255, 0.08),
+                transparent 88%);
+
+        opacity: 0.22;
+        filter: blur(10px);
+        mix-blend-mode: normal;
+
+        animation: rbGlowBreath 3s ease-in-out infinite;
+        will-change: filter;
+    }
+
+    /* @keyframes rbGlowBreath {
+
+        0%,
+        100% {
+            filter: blur(10px) brightness(1) saturate(1);
+        }
+
+        50% {
+            filter: blur(10px) brightness(1.06) saturate(1.04);
+        }
+    } */
 
 
     /* === SECTION WRAPPER === */
