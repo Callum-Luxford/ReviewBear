@@ -1,5 +1,5 @@
-import CTAButton from "../../buttons/CtaButton.jsx";
-import heroImage from "../../../assets/images/review-flow.png";
+import CTAButton from "../../buttons/CtaButton";
+import heroImage from "../../../assets/images/qr-image-4.png";
 
 function HeroContent() {
   return (
@@ -23,7 +23,7 @@ function HeroContent() {
           </div>
         </div>
         <div className="grid-right flex justify-center">
-          {/* <img src={heroImage} alt="reviewbear flow" className="" /> */}
+          <img src={heroImage} alt="reviewbear flow" className=""/>
         </div>
       </div>
     </section>

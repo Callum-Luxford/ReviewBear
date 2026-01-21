@@ -1,3 +1,14 @@
+type Position = "left" | "right";
+type BgDiamondsProps = {
+  diamondSide?: Position;
+  ticksSide?: Position;
+  showDiamond?: boolean;
+  showTicks?: boolean;
+  showHlinesTopRight?: boolean;
+  showHlinesBottomLeft?: boolean;
+  showSlants?: boolean;
+};
+
 export default function BackgroundDiamonds({
   diamondSide = "right",
   ticksSide = "left",
@@ -8,7 +19,7 @@ export default function BackgroundDiamonds({
   showHlinesBottomLeft = true,
 
   showSlants = true,
-}) {
+}: BgDiamondsProps) {
   const sideClass =
     diamondSide === "left" ? "bg-decor--left" : "bg-decor--right";
   const ticksClass =
