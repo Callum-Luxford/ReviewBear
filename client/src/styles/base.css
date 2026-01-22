@@ -573,4 +573,36 @@
     .mobile-nav-links>* {
         @apply border-b pb-2
     }
+
+
+    /* === HEX-CARD === */
+    /* Pointy-top hexagon */
+    /* .hex-clip {
+        -webkit-clip-path: polygon(50% 0%,
+                100% 25%,
+                100% 75%,
+                50% 100%,
+                0% 75%,
+                0% 25%);
+        clip-path: polygon(50% 0%,
+                100% 25%,
+                100% 75%,
+                50% 100%,
+                0% 75%,
+                0% 25%);
+    }
+
+    /* Hex gradient border */
+    /* .hex-border {
+        background: var(--brand-gradient);
+        padding: 1px;
+       
+     }  */
+
+    /* Hex glass fill */
+    /* .hex-glass {
+        background: rgba(0, 0, 0, 0.65);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    } */
 }

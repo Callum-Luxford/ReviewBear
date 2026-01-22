@@ -2,10 +2,14 @@ import { Outlet } from "react-router-dom";
 import Header from "../components/partials/Header";
 import Footer from "../components/partials/Footer";
 import SiteBackground from "../components/background/SiteBackground";
+import ParticlesBackground from "../components/effects/ParticlesBackground";
 
 function MainLayout() {
   return (
     <div className="min-h-screen">
+      {/* <ParticlesBackground /> */}
+      {/* <ParticlesBackground originId="hero-particles-origin" /> */}
+
       {/* Background */}
       <SiteBackground />
 

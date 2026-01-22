@@ -1,4 +1,5 @@
 import HeroContent from "../components/home/content/HeroContent";
+import WhyUs from "../components/home/content/WhyUs";
 import BackgroundDiamonds from "../components/background/BackgroundDiamonds";
 
 function Home() {
@@ -14,8 +15,11 @@ function Home() {
         showHlinesTopRight={false}
         showHlinesBottomLeft={true}
       />
-
+      {/* HerSection */}
       <HeroContent />
+
+      {/* WhyUs Section */}
+      <WhyUs />
     </section>
   );
 }

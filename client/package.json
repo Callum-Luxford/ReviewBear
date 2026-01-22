@@ -10,6 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tsparticles/plugin-emitters": "^3.9.1",
+    "@tsparticles/react": "^3.0.0",
+    "@tsparticles/slim": "^3.9.1",
     "hamburger-react": "^2.5.2",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",

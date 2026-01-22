@@ -42,6 +42,15 @@ module.exports = {
       fontFamily: {
         PlayFair: "var(--font-family-alt-1)",
       },
+      keyframes: {
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-8px)" }, // small movement
+        },
+      },
+      animation: {
+        float: "float 4s ease-in-out infinite",
+      },
     },
   },
   plugins: [require("tailwind-scrollbar-hide"), require("@tailwindcss/forms")],
