@@ -574,77 +574,95 @@
 
 
     /* ================================
-       SCROLLING GLOW TRACK (JOURNEY STYLE)
-       - glows are part of the page (scroll with content)
-       - no clipping at viewport edges (oversized canvas)
-       - no scene fade switching (all glows exist at fixed Y offsets)
-    ================================ */
+   SCROLLING GLOW TRACK (NO CLIP)
+   - glows scroll with the page
+   - blur never clips (rendered on ::before with negative inset)
+   - no extra horizontal scrollbar
+   - glows can be shifted inward
+================================ */
 
-    /* Make sure your layout can layer background behind content */
-    .app-shell {
-        position: relative;
-        isolation: isolate;
-        /* keeps z-index stacking predictable */
+    /* Prevent horizontal scroll caused by oversized blur paint areas */
+    html,
+    body {
+        overflow-x: hidden;
     }
 
-    /* The glow track scrolls WITH the page (not fixed) */
-    /* The glow track scrolls WITH the page (not fixed) */
+    /* Extra safety so the big ::before area never creates X scroll */
+    .app-shell {
+        overflow-x: clip;
+        /* modern browsers */
+        /* if this causes issues on your setup, use: overflow-x: hidden; */
+    }
+
+    /* Scrolls with the page (NOT fixed) */
     .glow-layer {
         position: absolute;
-        inset: 0;
-        /* top:0 left:0 right:0 bottom:0 */
-        z-index: 0;
-        pointer-events: none;
-        overflow: visible;
-        /* allow glow to render outside its own box */
-    }
-
-    /* Ensure actual page content sits above glows */
-    .app-shell>header,
-    .app-shell>main,
-    .app-shell>footer {
-        position: relative;
-        z-index: 1;
-    }
-
-    /* Shared glow canvas sizing: make it larger than the viewport
-       so circles never look cut off at edges */
-    .glow {
-        position: absolute;
+        top: 0;
         left: 50%;
         transform: translateX(-50%);
 
-        /* bigger canvas so the radial never reaches its edge */
-        width: max(2000px, 160vw);
-        height: max(1600px, 140vh);
-
-        opacity: 0.85;
-        mix-blend-mode: screen;
+        width: 100vw;
+        /* critical: prevents widening the page */
+        height: 100%;
+        z-index: 0;
 
         pointer-events: none;
-        background-repeat: no-repeat;
-
-        /* keep natural gradient size */
-        background-size: auto;
+        overflow: visible;
+        /* keep glows alive */
     }
 
-    /* --- Place each glow at a different scroll position --- */
-    /* Tune these top values to match where you want each glow to “live” */
+    /* The "anchor box" — not blurred, just positioning */
+    .glow {
+        position: absolute;
+        left: 50%;
+        transform: translateX(calc(-50% + var(--glow-shift, 0px)));
+        pointer-events: none;
+
+        /* anchor size (controls how wide the glow can “live”) */
+        width: max(1400px, 120vw);
+        height: max(1400px, 120vw);
+
+        /* important: NO blur here */
+        filter: none;
+        background: none;
+
+        /* optional but usually looks best for glow/light */
+        mix-blend-mode: screen;
+
+        /* defaults (overridden per glow modifier) */
+        --glow-bg: none;
+        --glow-blur: 70px;
+        --glow-opacity: 0.85;
+    }
+
+    /* The actual glow paint (oversized so blur never clips) */
+    .glow::before {
+        content: "";
+        position: absolute;
+
+        /* the magic: expand paint area so blur edge is never visible */
+        inset: -500px;
+
+        background: var(--glow-bg);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+
+        filter: blur(var(--glow-blur));
+        opacity: var(--glow-opacity);
+
+        pointer-events: none;
+    }
+
+    /* -------------------------------
+   Glow positions + inward shifts
+-------------------------------- */
+
+    /* Top-right scene */
     .glow--tr {
         top: -20vh;
-    }
-
-    .glow--bl {
-        top: 110vh;
-    }
-
-    .glow--br {
-        top: 240vh;
-    }
-
-    /* --- Glow visuals (your colours) --- */
-    .glow--tr {
-        background:
+        --glow-shift: -220px;
+        /* move inward from right */
+        --glow-bg:
             radial-gradient(900px 700px at 85% 18%,
                 rgba(123, 92, 255, 0.45) 0%,
                 rgba(123, 92, 255, 0.22) 35%,
@@ -653,8 +671,12 @@
                 transparent 82%);
     }
 
+    /* Bottom-left scene */
     .glow--bl {
-        background:
+        top: 110vh;
+        --glow-shift: 220px;
+        /* move inward from left */
+        --glow-bg:
             radial-gradient(900px 750px at 12% 85%,
                 rgba(59, 160, 175, 0.30) 0%,
                 rgba(59, 160, 175, 0.16) 38%,
@@ -663,19 +685,18 @@
                 transparent 84%);
     }
 
+    /* Bottom-right scene */
     .glow--br {
-        background:
+        top: 240vh;
+        --glow-shift: -220px;
+        /* move inward from right */
+        --glow-bg:
             radial-gradient(950px 800px at 88% 86%,
                 rgba(123, 92, 255, 0.30) 0%,
                 rgba(123, 92, 255, 0.16) 40%,
                 rgba(59, 160, 175, 0.10) 60%,
                 rgba(123, 92, 255, 0.04) 74%,
                 transparent 86%);
-    }
-
-    html,
-    body {
-        overflow-x: hidden;
     }
 
 }
