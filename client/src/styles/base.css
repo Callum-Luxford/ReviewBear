@@ -133,6 +133,7 @@
     --icon-clr-1: invert(28%) sepia(25%) saturate(407%) hue-rotate(178deg) brightness(84%) contrast(100%);
     --icon-clr-2: invert(100%) sepia(9%) saturate(2%) hue-rotate(290deg) brightness(108%) contrast(100%);
 
+
     /* ----------- Extra CSS / Project Specific ------------ */
     /* ----------- Extra CSS / Project Specific ------------ */
     --gradient-clr-1: #ec4899;
@@ -256,6 +257,33 @@
             linear-gradient(135deg, rgba(59, 160, 175, 0.9), rgba(82, 37, 165, 0.9)) border-box;
         border: 1px solid transparent;
         border-radius: 12px;
+    }
+
+    .rb-border-only {
+        position: relative;
+        border-radius: 16px;
+    }
+
+    .rb-border-only::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        padding: 1px;
+        /* border thickness */
+        border-radius: inherit;
+
+        background: linear-gradient(135deg,
+                #3ba0af 0%,
+                #5225a5 100%);
+
+        /* CUT OUT THE MIDDLE */
+        -webkit-mask:
+            linear-gradient(#000 0 0) content-box,
+            linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+
+        pointer-events: none;
     }
 
     @keyframes ctaGlow {
@@ -605,4 +633,28 @@
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
     } */
+
+    /* === WHY US === */
+    .icon-clr {
+        filter: var(--icon-clr-1);
+    }
+
+    .icon-gradient {
+        background: linear-gradient(135deg,
+                #ffffff 0%,
+                #3ba0af 30%,
+                #5225a5 100%);
+
+        -webkit-mask-image: var(--icon-mask);
+        mask-image: var(--icon-mask);
+
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+
+        -webkit-mask-size: contain;
+        mask-size: contain;
+
+        -webkit-mask-position: center;
+        mask-position: center;
+    }
 }

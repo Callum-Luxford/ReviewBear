@@ -1,34 +1,25 @@
 import HexCard from "../../ui/HexCard";
+import WhyUsCard from "../../ui/WhyUsCard";
+import qrIcon from "../../../assets/icons/qr-code.png";
+import anywhereIcon from "../../../assets/icons/anywhere.png";
+import settingIcon from "../../../assets/icons/setting.png";
 
-function WhyUs() {
+export default function WhyUs() {
   return (
-    <section className="section">
-      <div className="flex flex-col justify-center items-center md:flex-row gap-20 text-text_clr_1">
-        <HexCard size={250}>
-          <div className="grid gap-2">
-            <h1 className="font-bold text-md">Turn Scans into Reviews</h1>
-            <p>
-              Customers scan → tap → review. Zero friction. Higher completion.
-            </p>
-          </div>
-        </HexCard>
-        <HexCard size={250}>
-          <div className="grid gap-2">
-            <h1 className="font-bold text-md">Works Anywhere</h1>
-            <p>
-              Table tents, receipts, emails, windows. One QR — many touchpoints.
-            </p>
-          </div>
-        </HexCard>
-        <HexCard size={250}>
-          <div className="grid gap-2">
-            <h1 className="font-bold text-md">Simple Setup</h1>
-            <p>Create → print → scan. No apps. No training. No nonsense.</p>
-          </div>
-        </HexCard>
+    <section className="section mt-40">
+      <div className="grid gap-6 md:grid-cols-3">
+        <WhyUsCard image={qrIcon} title="Turn Scans into Reviews">
+          Customers scan → tap → review. Zero friction. Higher completion.
+        </WhyUsCard>
+
+        <WhyUsCard image={anywhereIcon} title="Works Anywhere">
+          Table tents, receipts, emails, windows. One QR — many touchpoints.
+        </WhyUsCard>
+
+        <WhyUsCard image={settingIcon} title="Simple Setup">
+          Create → print → scan. No apps. No training. No nonsense.
+        </WhyUsCard>
       </div>
     </section>
   );
 }
-
-export default WhyUs;
