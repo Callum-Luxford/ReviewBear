@@ -6,7 +6,7 @@ import settingIcon from "../../../assets/icons/setting.png";
 
 export default function WhyUs() {
   return (
-    <section className="section mt-40">
+    <section data-glow="bl" className="section mt-40">
       <div className="grid gap-6 md:grid-cols-3">
         <WhyUsCard image={qrIcon} title="Turn Scans into Reviews">
           Customers scan → tap → review. Zero friction. Higher completion.

@@ -119,7 +119,7 @@
 
     /* ----------- theme colors ------------ */
     /* ----------- theme colors ------------ */
-    --theme-clr-1: #000236;
+    --theme-clr-1: #06081d;
     --theme-clr-2: #ffffff;
     --theme-clr-3: #202938;
     --theme-clr-4: #5F8D4E;
@@ -298,103 +298,11 @@
         }
     }
 
-    /* === PAGE BACKGROUND === */
-    .page-bg {
-        background: radial-gradient(900px 650px at 78% 12%,
-                rgba(82, 37, 165, 0.45),
-                transparent 60%),
-            radial-gradient(700px 520px at 64% 22%,
-                rgba(123, 92, 255, 0.18),
-                transparent 65%),
-            radial-gradient(800px 600px at 74% 34%,
-                rgba(59, 160, 175, 0.16),
-                transparent 62%),
-            radial-gradient(1400px 1100px at 6% 78%,
-                rgba(21, 56, 66, 0.92),
-                transparent 55%),
-            radial-gradient(900px 800px at 0% 80%,
-                rgba(59, 160, 175, 0.18),
-                transparent 58%),
-            linear-gradient(180deg, #060c1f 0%, #06081d 60%, #06081d 100%);
-        min-height: 100vh;
-        position: relative;
-        overflow: hidden;
-    }
-
-    /* =========================================================
-      continuous site background (single seamless layer)
-       - Fixed behind everything
-       - Radial glow positions drift with scroll
-    ========================================================= */
-    .site-bg {
-        position: fixed;
-        inset: 0;
-        z-index: 0;
-        pointer-events: none;
-
-        background-color: var(--theme-clr-1);
-
-        background-image:
-            radial-gradient(var(--glow-tr-w) var(--glow-tr-h) at calc(92% + (var(--rb-scroll) * 0.015)) calc(6% + (var(--rb-scroll) * 0.03)),
-                rgba(96, 70, 255, 0.24),
-                transparent 78%),
-
-            radial-gradient(var(--glow-bl-w) var(--glow-bl-h) at calc(6% - (var(--rb-scroll) * 0.01)) calc(94% - (var(--rb-scroll) * 0.02)),
-                rgba(20, 180, 200, 0.20),
-                transparent 80%),
-
-            radial-gradient(var(--glow-mid-w) var(--glow-mid-h) at 50% 55%,
-                rgba(70, 110, 255, 0.06),
-                transparent 85%),
-
-            /* keep your other glows as-is, or convert them too */
-            linear-gradient(180deg, #060c1f 0%, #06081d 60%, #06081d 100%);
-    }
-
-    /* Subtle breathing (brightness only) */
-    .site-bg::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-
-        /* same background stack, slightly stronger for the breath */
-        background-image:
-            radial-gradient(var(--glow-tr-w) var(--glow-tr-h) at calc(92% + (var(--rb-scroll) * 0.015)) calc(6% + (var(--rb-scroll) * 0.03)),
-                rgba(96, 70, 255, 0.30),
-                transparent 80%),
-            radial-gradient(var(--glow-bl-w) var(--glow-bl-h) at calc(6% - (var(--rb-scroll) * 0.01)) calc(94% - (var(--rb-scroll) * 0.02)),
-                rgba(20, 180, 200, 0.24),
-                transparent 82%),
-            radial-gradient(var(--glow-mid-w) var(--glow-mid-h) at 50% 55%,
-                rgba(70, 110, 255, 0.08),
-                transparent 88%);
-
-        opacity: 0.22;
-        filter: blur(10px);
-        mix-blend-mode: normal;
-
-        animation: rbGlowBreath 3s ease-in-out infinite;
-        will-change: filter;
-    }
-
-    /* @keyframes rbGlowBreath {
-
-        0%,
-        100% {
-            filter: blur(10px) brightness(1) saturate(1);
-        }
-
-        50% {
-            filter: blur(10px) brightness(1.06) saturate(1.04);
-        }
-    } */
-
 
     /* === SECTION WRAPPER === */
     .bg-section {
-        position: relative;
-        overflow: hidden;
+        /* position: relative; */
+        /* overflow: hidden; */
     }
 
     .bg-section> :not(.bg-decor) {
@@ -657,4 +565,117 @@
         -webkit-mask-position: center;
         mask-position: center;
     }
+
+
+
+
+
+
+
+
+    /* ================================
+       SCROLLING GLOW TRACK (JOURNEY STYLE)
+       - glows are part of the page (scroll with content)
+       - no clipping at viewport edges (oversized canvas)
+       - no scene fade switching (all glows exist at fixed Y offsets)
+    ================================ */
+
+    /* Make sure your layout can layer background behind content */
+    .app-shell {
+        position: relative;
+        isolation: isolate;
+        /* keeps z-index stacking predictable */
+    }
+
+    /* The glow track scrolls WITH the page (not fixed) */
+    /* The glow track scrolls WITH the page (not fixed) */
+    .glow-layer {
+        position: absolute;
+        inset: 0;
+        /* top:0 left:0 right:0 bottom:0 */
+        z-index: 0;
+        pointer-events: none;
+        overflow: visible;
+        /* allow glow to render outside its own box */
+    }
+
+    /* Ensure actual page content sits above glows */
+    .app-shell>header,
+    .app-shell>main,
+    .app-shell>footer {
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Shared glow canvas sizing: make it larger than the viewport
+       so circles never look cut off at edges */
+    .glow {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+
+        /* bigger canvas so the radial never reaches its edge */
+        width: max(2000px, 160vw);
+        height: max(1600px, 140vh);
+
+        opacity: 0.85;
+        mix-blend-mode: screen;
+
+        pointer-events: none;
+        background-repeat: no-repeat;
+
+        /* keep natural gradient size */
+        background-size: auto;
+    }
+
+    /* --- Place each glow at a different scroll position --- */
+    /* Tune these top values to match where you want each glow to “live” */
+    .glow--tr {
+        top: -20vh;
+    }
+
+    .glow--bl {
+        top: 110vh;
+    }
+
+    .glow--br {
+        top: 240vh;
+    }
+
+    /* --- Glow visuals (your colours) --- */
+    .glow--tr {
+        background:
+            radial-gradient(900px 700px at 85% 18%,
+                rgba(123, 92, 255, 0.45) 0%,
+                rgba(123, 92, 255, 0.22) 35%,
+                rgba(59, 160, 175, 0.12) 55%,
+                rgba(123, 92, 255, 0.05) 70%,
+                transparent 82%);
+    }
+
+    .glow--bl {
+        background:
+            radial-gradient(900px 750px at 12% 85%,
+                rgba(59, 160, 175, 0.30) 0%,
+                rgba(59, 160, 175, 0.16) 38%,
+                rgba(123, 92, 255, 0.10) 58%,
+                rgba(59, 160, 175, 0.04) 72%,
+                transparent 84%);
+    }
+
+    .glow--br {
+        background:
+            radial-gradient(950px 800px at 88% 86%,
+                rgba(123, 92, 255, 0.30) 0%,
+                rgba(123, 92, 255, 0.16) 40%,
+                rgba(59, 160, 175, 0.10) 60%,
+                rgba(123, 92, 255, 0.04) 74%,
+                transparent 86%);
+    }
+
+    html,
+    body {
+        overflow-x: hidden;
+    }
+
 }

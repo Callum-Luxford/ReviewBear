@@ -24,6 +24,22 @@ function Home() {
       <WhyUs />
       {/* WhyUs Section */}
       <WhyUs />
+      {/* WhyUs Section */}
+      <WhyUs />
+      {/* WhyUs Section */}
+      <WhyUs />
+      {/* WhyUs Section */}
+      <WhyUs />
+      {/* WhyUs Section */}
+      <WhyUs />
+      {/* WhyUs Section */}
+      <WhyUs />
+      {/* WhyUs Section */}
+      <WhyUs />
+      {/* WhyUs Section */}
+      <WhyUs />
+      {/* WhyUs Section */}
+      <WhyUs />
     </section>
   );
 }

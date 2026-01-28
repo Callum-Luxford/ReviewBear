@@ -4,7 +4,7 @@ import ParticlesBackground from "../../effects/ParticlesBackground";
 
 function HeroContent() {
   return (
-    <section className="hero-section section relative z-10">
+    <section data-glow="tr" className="hero-section section relative z-10">
       <div className="hero-content grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="grid-left min-w-0 flex flex-col gap-4 text-center md:text-start">
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mt-20 text-text_clr_1">

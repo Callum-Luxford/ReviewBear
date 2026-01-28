@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+import { useEffect } from "react";
 import Header from "../components/partials/Header";
 import Footer from "../components/partials/Footer";
 import SiteBackground from "../components/background/SiteBackground";
@@ -6,12 +7,17 @@ import ParticlesBackground from "../components/effects/ParticlesBackground";
 
 function MainLayout() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen app-shell">
       {/* <ParticlesBackground /> */}
       {/* <ParticlesBackground originId="hero-particles-origin" /> */}
 
       {/* Background */}
-      <SiteBackground />
+      {/* <SiteBackground /> */}
+      <div className="glow-layer" aria-hidden="true">
+        <div className="glow glow--tr" />
+        <div className="glow glow--bl" />
+        <div className="glow glow--br" />
+      </div>
 
       {/* Header for the layout applies to all sub pages */}
       <Header />
