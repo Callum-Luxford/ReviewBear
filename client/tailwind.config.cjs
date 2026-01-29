@@ -16,6 +16,7 @@ module.exports = {
         text_clr_5: "var(--font-clr-5)",
         icon_clr_1: "var(--icon-clr-1)",
         icon_clr_2: "var(--icon-clr-2)",
+        glass: "#070a17",
       },
       fontSize: {
         "2xs": "var(--font-size-2xs)",

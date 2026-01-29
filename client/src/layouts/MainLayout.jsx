@@ -13,10 +13,17 @@ function MainLayout() {
 
       {/* Background */}
       {/* <SiteBackground /> */}
-      <div className="glow-layer" aria-hidden="true">
-        <div className="glow glow--tr" />
-        <div className="glow glow--bl" />
-        <div className="glow glow--br" />
+      <div className="glow-clip" aria-hidden="true">
+        <div className="glow-layer">
+          <div className="glow glow--tr" />
+          <div className="glow glow--bl" />
+          <div className="glow glow--br" />
+          
+          {/* new ones */}
+          <div className="glow glow--midl" />
+          <div className="glow glow--midr" />
+          <div className="glow glow--lowl" />
+        </div>
       </div>
 
       {/* Header for the layout applies to all sub pages */}

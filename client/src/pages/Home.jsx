@@ -20,26 +20,6 @@ function Home() {
 
       {/* WhyUs Section */}
       <WhyUs />
-      {/* WhyUs Section */}
-      <WhyUs />
-      {/* WhyUs Section */}
-      <WhyUs />
-      {/* WhyUs Section */}
-      <WhyUs />
-      {/* WhyUs Section */}
-      <WhyUs />
-      {/* WhyUs Section */}
-      <WhyUs />
-      {/* WhyUs Section */}
-      <WhyUs />
-      {/* WhyUs Section */}
-      <WhyUs />
-      {/* WhyUs Section */}
-      <WhyUs />
-      {/* WhyUs Section */}
-      <WhyUs />
-      {/* WhyUs Section */}
-      <WhyUs />
     </section>
   );
 }

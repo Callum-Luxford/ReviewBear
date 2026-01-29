@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import logo from "../../assets/images/logo-2.png";
 import { Link } from "react-router-dom";
 import { HiMenu } from "react-icons/hi";
@@ -15,6 +15,16 @@ import {
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   function closeMenu() {
     setMenuOpen(false);
@@ -22,6 +32,16 @@ function Header() {
 
   return (
     <header className="fixed top-0 left-0 z-[9998] w-full h-24">
+      <div
+        aria-hidden="true"
+        className={`absolute inset-0 pointer-events-none transition-all duration-300
+    ${
+      scrolled
+        ? "bg-glass/60 backdrop-blur-md border-black/10 shadow-lg shadow-black/5"
+        : "bg-transparent"
+    }`}
+      />
+
       {/* Mobile Nav */}
       <nav
         className={`mobile-nav text-text_clr_1 fixed top-0 right-0 w-2/3 h-full z-40 transform transition-transform duration-300 ease-in-out bg-slate-800  ${menuOpen ? "pointer-events-auto translate-x-0" : "pointer-events-none translate-x-full"}`}
