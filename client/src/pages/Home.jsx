@@ -1,11 +1,13 @@
 import HeroContent from "../components/home/content/HeroContent";
-import WhyUs from "../components/home/content/WhyUs";
+import TimelineFeature from "../components/home/content/TimelinesFeature";
+import HowItWorks from "../components/home/content/HowItWorks";
+import StartToday from "../components/home/content/StartToday";
 import BackgroundDiamonds from "../components/background/BackgroundDiamonds";
 
 function Home() {
   return (
     <section className="relative overflow-x-clip">
-      <BackgroundDiamonds
+      {/* <BackgroundDiamonds
         diamondSide="right"
         ticksSide="left"
         showDiamond={true}
@@ -14,12 +16,18 @@ function Home() {
         showSlants
         showHlinesTopRight={false}
         showHlinesBottomLeft={true}
-      />
-      {/* HerSection */}
+      /> */}
+      {/* HeroSection */}
       <HeroContent />
 
-      {/* WhyUs Section */}
-      <WhyUs />
+      {/* How it Works */}
+      <TimelineFeature />
+
+      {/* How it Works */}
+      <HowItWorks />
+
+      {/* Start Today */}
+      <StartToday />
     </section>
   );
 }
