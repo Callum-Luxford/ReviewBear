@@ -231,7 +231,10 @@
 @layer components {
 
     .section {
-        @apply w-full py-24 md:py-48;
+        @apply w-full py-20 md:py-36;
+    }
+    .section-sm {
+        @apply w-full py-12 md:py-24;
     }
 
     /* .app-shell {

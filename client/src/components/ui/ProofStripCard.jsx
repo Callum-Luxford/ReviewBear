@@ -1,4 +1,4 @@
-export default function HowItWorksCard({
+export default function ProofStripCard({
   image,
   title,
   children,
@@ -19,10 +19,10 @@ export default function HowItWorksCard({
           "p-4",
         ].join(" ")}
       >
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-2">
           {" "}
           <div
-            className="h-16 w-16 icon-gradient"
+            className="h-10 w-10 icon-gradient"
             style={{ "--icon-mask": `url(${image})` }}
           />
           <div className="flex flex-col gap-1">

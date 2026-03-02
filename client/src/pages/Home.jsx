@@ -2,6 +2,7 @@ import HeroContent from "../components/home/content/HeroContent";
 import TimelineFeature from "../components/home/content/TimelinesFeature";
 import HowItWorks from "../components/home/content/HowItWorks";
 import StartToday from "../components/home/content/StartToday";
+import ProofStrip from "../components/home/content/ProofStrip";
 import BackgroundDiamonds from "../components/background/BackgroundDiamonds";
 
 function Home() {
@@ -19,6 +20,9 @@ function Home() {
       /> */}
       {/* HeroSection */}
       <HeroContent />
+
+      {/* Proof Strip */}
+      <ProofStrip />
 
       {/* How it Works */}
       <TimelineFeature />
