@@ -54,8 +54,7 @@ function HeroContent() {
         </div>
 
         <div className="grid-right relative flex justify-center">
-          <div className="relative w-full max-w-[1200px] min-h-[540px] md:min-h-[760px]">
-            
+          <div className="relative w-full max-w-[1200px] aspect-[10/7] md:aspect-[10/6]">
             {/* Image + particles share the same centered wrapper */}
             <div className="absolute inset-0 z-10 flex items-center justify-center">
               <div className="relative w-full max-w-[980px]">
