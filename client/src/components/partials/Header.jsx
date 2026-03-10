@@ -34,12 +34,18 @@ function Header() {
     <header className="fixed top-0 left-0 z-[9998] w-full h-24">
       <div
         aria-hidden="true"
-        className={`absolute inset-0 pointer-events-none transition-all duration-300
-    ${
-      scrolled
-        ? "bg-glass/60 backdrop-blur-md border-black/10 shadow-lg shadow-black/5"
-        : "bg-transparent"
-    }`}
+        className={`absolute inset-0 pointer-events-none transition-all duration-300${
+          scrolled
+            ? "bg-glass/60 backdrop-blur-md shadow-lg shadow-black/5"
+            : "bg-transparent"
+        }`}
+      />
+
+      <div
+        aria-hidden="true"
+        className={`absolute inset-x-0 bottom-0 h-px pointer-events-none ${
+          scrolled ? "bg-white/10" : "bg-transparent"
+        }`}
       />
 
       {/* Mobile Nav */}

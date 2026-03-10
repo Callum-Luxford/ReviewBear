@@ -18,7 +18,7 @@ function MainLayout() {
           <div className="glow glow--tr" />
           <div className="glow glow--bl" />
           <div className="glow glow--br" />
-          
+
           {/* new ones */}
           <div className="glow glow--midl" />
           <div className="glow glow--midr" />
@@ -30,7 +30,7 @@ function MainLayout() {
       <Header />
 
       {/* Main constrained content */}
-      <main className="flex-grow max-w-[1400px] mx-auto w-full px-4 pt-24">
+      <main className="flex-grow w-full">
         <Outlet />
       </main>
 
